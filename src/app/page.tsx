@@ -36,7 +36,7 @@ export default function Home() {
           <span aria-hidden className="text-muted/50">
             ·
           </span>
-          <span>2 — 6 weeks</span>
+          <span>2 — 7 days</span>
         </div>
       </section>
 
@@ -121,9 +121,14 @@ function ProjectCard({
           {String(index).padStart(2, "0")}
         </span>
         {project.link && (
-          <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted opacity-0 group-hover:opacity-100 transition-opacity">
+          <a
+            href={project.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted opacity-0 group-hover:opacity-100 transition-opacity hover:text-accent"
+          >
             Visit ↗
-          </span>
+          </a>
         )}
       </div>
       <ProjectCarousel
