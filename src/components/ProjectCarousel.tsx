@@ -69,17 +69,41 @@ export function ProjectCarousel({
             type="button"
             onClick={go(-1)}
             aria-label="이전 이미지"
-            className="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 z-10 grid place-items-center w-9 h-9 rounded-full bg-background/85 backdrop-blur text-foreground text-lg leading-none shadow-sm opacity-0 group-hover/carousel:opacity-100 transition-opacity hover:bg-background"
+            className="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 z-10 grid place-items-center w-9 h-9 rounded-full bg-background/85 backdrop-blur text-foreground shadow-sm opacity-0 group-hover/carousel:opacity-100 transition-opacity hover:bg-background"
           >
-            <span aria-hidden>‹</span>
+            <svg
+              aria-hidden
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <polyline points="15 6 9 12 15 18" />
+            </svg>
           </button>
           <button
             type="button"
             onClick={go(1)}
             aria-label="다음 이미지"
-            className="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 z-10 grid place-items-center w-9 h-9 rounded-full bg-background/85 backdrop-blur text-foreground text-lg leading-none shadow-sm opacity-0 group-hover/carousel:opacity-100 transition-opacity hover:bg-background"
+            className="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 z-10 grid place-items-center w-9 h-9 rounded-full bg-background/85 backdrop-blur text-foreground shadow-sm opacity-0 group-hover/carousel:opacity-100 transition-opacity hover:bg-background"
           >
-            <span aria-hidden>›</span>
+            <svg
+              aria-hidden
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <polyline points="9 6 15 12 9 18" />
+            </svg>
           </button>
 
           <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-10 flex gap-1.5 opacity-0 group-hover/carousel:opacity-100 transition-opacity">
