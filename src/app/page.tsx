@@ -82,15 +82,23 @@ export default function Home() {
                 )}
               </header>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-12 sm:gap-y-14">
-                {preview.map((project, i) => (
-                  <ProjectCard
-                    key={project.name}
-                    project={project}
-                    index={i + 1}
-                  />
-                ))}
-              </div>
+              {preview.length > 0 ? (
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-12 sm:gap-y-14">
+                  {preview.map((project, i) => (
+                    <ProjectCard
+                      key={project.name}
+                      project={project}
+                      index={i + 1}
+                    />
+                  ))}
+                </div>
+              ) : (
+                <div className="aspect-[16/6] sm:aspect-[16/4] grid place-items-center rounded-md border border-dashed border-border">
+                  <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted">
+                    Coming soon
+                  </p>
+                </div>
+              )}
             </section>
           );
         })}

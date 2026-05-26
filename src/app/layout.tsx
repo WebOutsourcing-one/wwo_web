@@ -53,12 +53,6 @@ export default function RootLayout({
               </span>
             </Link>
             <nav className="flex items-center gap-8 text-sm">
-              <Link
-                href="/"
-                className="text-muted hover:text-foreground transition-colors"
-              >
-                Works
-              </Link>
               <a
                 href="https://open.kakao.com/o/s46m1jvi"
                 target="_blank"

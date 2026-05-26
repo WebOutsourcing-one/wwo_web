@@ -72,6 +72,13 @@ export default async function CategoryPage({
       </section>
 
       <section className="py-12 sm:py-16 space-y-20">
+        {cat.projects.length === 0 && (
+          <div className="aspect-[16/6] grid place-items-center rounded-md border border-dashed border-border">
+            <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted">
+              Coming soon
+            </p>
+          </div>
+        )}
         {cat.projects.map((project, idx) => (
           <article
             key={project.name}
