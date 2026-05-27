@@ -53,7 +53,7 @@ export const categories: Category[] = [
   {
     slug: "contest",
     name: "공모전",
-    description: "공모전·해커톤 출품 프로젝트",
+    description: "공모전 출품작을 접수하고 관리하는 운영 사이트",
     projects: [
       /*
       {
