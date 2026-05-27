@@ -27,7 +27,7 @@ export default function Home() {
         </h1>
 
         <p className="rise rise-3 mt-8 max-w-xl text-base sm:text-lg text-foreground/75 leading-[1.7]">
-          제품 소개 · 회사 소개 · 공모전 사이트 — 작은 규모의 웹 프로젝트를
+          제품 소개 · 회사 소개 · 공모전 사이트 - 작은 규모의 웹 프로젝트를
           끝까지 책임지고 만들어 드립니다.
         </p>
 
