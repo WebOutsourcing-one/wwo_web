@@ -14,9 +14,16 @@ export async function generateMetadata({
 }) {
   const { category } = await params;
   const cat = getCategory(category);
+  if (!cat) return { title: "찾을 수 없는 페이지" };
   return {
-    title: cat ? `${cat.name} — WOO` : "Not found",
-    description: cat?.description,
+    title: cat.name,
+    description: cat.description,
+    alternates: { canonical: `/portfolio/${cat.slug}` },
+    openGraph: {
+      title: `${cat.name} — WOO`,
+      description: cat.description,
+      url: `/portfolio/${cat.slug}`,
+    },
   };
 }
 
@@ -32,17 +39,17 @@ export default async function CategoryPage({
   const catIdx = categories.findIndex((c) => c.slug === cat.slug);
 
   return (
-    <div className="mx-auto max-w-5xl px-6 sm:px-10">
+    <div className="mx-auto max-w-6xl px-6 sm:px-10">
       <section className="relative pt-10 pb-10 sm:pt-14 sm:pb-12 border-b border-border">
         <Link
-          href="/"
+          href="/portfolio"
           className="inline-flex items-center gap-2 text-sm text-muted hover:text-accent transition-colors mb-8 group"
         >
           <span aria-hidden className="transition-transform group-hover:-translate-x-1">
             ←
           </span>{" "}
           <span className="font-mono text-[11px] uppercase tracking-[0.22em]">
-            Index
+            Portfolio
           </span>
         </Link>
 

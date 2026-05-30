@@ -1,15 +1,22 @@
 import Link from "next/link";
-import { categories, PREVIEW_COUNT, type Project } from "@/data/categories";
-import { ProjectCarousel } from "@/components/ProjectCarousel";
-import { CategoryNav } from "@/components/CategoryNav";
+import { TechStack } from "@/components/TechStack";
+import { PricingTable } from "@/components/PricingTable";
+import {
+  SERVICE_TAGLINE,
+  KAKAO_OPEN_CHAT,
+  serviceOverview,
+  basicServices,
+  techStackNote,
+  paidServices,
+  processSteps,
+  clientPrep,
+  clientPrepNote,
+} from "@/data/service";
 
-export default function Home() {
+export default function HomePage() {
   return (
     <div className="mx-auto max-w-6xl px-6 sm:px-10">
-      <CategoryNav
-        items={categories.map((c) => ({ slug: c.slug, name: c.name }))}
-      />
-
+      {/* ── 1. Hero ─────────────────────────────────────────── */}
       <section className="relative pt-16 pb-14 sm:pt-24 sm:pb-20 border-b border-border">
         <div className="rise rise-1 flex items-center gap-3 mb-10">
           <span className="relative flex h-2 w-2">
@@ -21,131 +28,263 @@ export default function Home() {
           </p>
         </div>
 
-        <h1 className="rise rise-2 text-[clamp(2.6rem,7.5vw,5.75rem)] font-semibold leading-[1.04] tracking-[-0.03em] max-w-[16ch]">
-          디자인부터 배포까지
-          <br />한 사람이 끝까지.
+        <h1 className="rise rise-2 text-[clamp(2.6rem,7.5vw,5.75rem)] font-semibold leading-[1.04] tracking-[-0.03em] max-w-[18ch]">
+          {SERVICE_TAGLINE}
         </h1>
 
-        <p className="rise rise-3 mt-8 max-w-xl text-base sm:text-lg text-foreground/75 leading-[1.7]">
-          제품 소개 · 회사 소개 · 공모전 사이트 - 작은 규모의 웹 프로젝트를
-          끝까지 책임지고 만들어 드립니다.
-        </p>
-
-        <div className="rise rise-4 mt-12 flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-[11px] uppercase tracking-[0.22em] text-muted">
-          <span>Next.js · React · Tailwind</span>
-          <span aria-hidden className="text-muted/50">
-            ·
-          </span>
-          <span>2 — 7 days</span>
+        <div className="rise rise-3 mt-10 flex flex-wrap items-center gap-3">
+          <a
+            href={KAKAO_OPEN_CHAT}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-accent text-white hover:bg-accent/90 rounded-md px-6 py-3.5 text-sm font-semibold transition-colors"
+          >
+            무료 상담 시작하기 →
+          </a>
+          <Link
+            href="/portfolio"
+            className="border border-border hover:border-accent hover:text-accent rounded-md px-6 py-3.5 text-sm font-medium transition-colors"
+          >
+            포트폴리오 보기
+          </Link>
         </div>
       </section>
 
-      <div className="divide-y divide-border">
-        {categories.map((cat, catIdx) => {
-          const preview = cat.projects.slice(0, PREVIEW_COUNT);
-          const hasMore = cat.projects.length > PREVIEW_COUNT;
-          return (
-            <section
-              key={cat.slug}
-              id={cat.slug}
-              className="py-14 sm:py-20 scroll-mt-20"
-            >
-              <header className="flex items-end justify-between mb-10 gap-6">
-                <div>
-                  <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted mb-3">
-                    Section · {String(catIdx + 1).padStart(2, "0")} /{" "}
-                    {String(categories.length).padStart(2, "0")}
-                  </p>
-                  <h2 className="text-3xl sm:text-5xl font-medium tracking-[-0.02em] leading-[1.05]">
-                    {cat.name}
-                  </h2>
-                  {cat.description && (
-                    <p className="mt-3 text-sm sm:text-base text-muted max-w-md">
-                      {cat.description}
-                    </p>
-                  )}
-                </div>
-                {hasMore && (
-                  <Link
-                    href={`/${cat.slug}`}
-                    className="shrink-0 group inline-flex items-baseline gap-2 text-sm border-b border-border pb-1 hover:border-accent hover:text-accent transition-colors"
-                  >
-                    <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted group-hover:text-accent transition-colors">
-                      {String(cat.projects.length - PREVIEW_COUNT).padStart(
-                        2,
-                        "0"
-                      )}{" "}
-                      more
-                    </span>
-                    <span aria-hidden>→</span>
-                  </Link>
-                )}
-              </header>
-
-              {preview.length > 0 ? (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-12 sm:gap-y-14">
-                  {preview.map((project, i) => (
-                    <ProjectCard
-                      key={project.name}
-                      project={project}
-                      index={i + 1}
-                    />
-                  ))}
-                </div>
-              ) : (
-                <div className="aspect-[16/6] sm:aspect-[16/4] grid place-items-center rounded-md border border-dashed border-border">
-                  <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted">
-                    Coming soon
-                  </p>
-                </div>
-              )}
-            </section>
-          );
-        })}
-      </div>
-    </div>
-  );
-}
-
-function ProjectCard({
-  project,
-  index,
-}: {
-  project: Project;
-  index: number;
-}) {
-  return (
-    <div className="group">
-      <div className="flex items-baseline justify-between mb-3">
-        <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted">
-          {String(index).padStart(2, "0")}
-        </span>
-        {project.link && (
-          <a
-            href={project.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted opacity-0 group-hover:opacity-100 transition-opacity hover:text-accent"
-          >
-            Visit ↗
-          </a>
-        )}
-      </div>
-      <ProjectCarousel
-        images={project.images}
-        alt={project.name}
-        link={project.link}
-      />
-      <div className="mt-4 flex items-baseline justify-between gap-3">
-        <h3 className="text-base sm:text-lg font-medium tracking-tight">
-          {project.name}
-        </h3>
-      </div>
-      {project.description && (
-        <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.18em] text-muted">
-          {project.description}
+      {/* ── 2. 서비스 개요 ──────────────────────────────────── */}
+      <section
+        id="service"
+        className="py-14 sm:py-20 border-b border-border scroll-mt-20"
+      >
+        <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted mb-6">
+          Service · 서비스 소개
         </p>
-      )}
+        <h2 className="text-3xl sm:text-5xl font-medium tracking-[-0.02em] leading-[1.05] mb-8 max-w-[18ch]">
+          단순히 텍스트만 바꾸는
+          <br />
+          홈페이지가 아닙니다.
+        </h2>
+        <div className="space-y-4 max-w-2xl">
+          {serviceOverview.paragraphs.map((para, i) => (
+            <p key={i} className="text-base text-foreground/75 leading-[1.7]">
+              {para}
+            </p>
+          ))}
+        </div>
+      </section>
+
+      {/* ── 3. 기본 포함 사항 ───────────────────────────────── */}
+      <section className="py-14 sm:py-20 border-b border-border">
+        <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted mb-6">
+          Included · 기본 포함 사항
+        </p>
+        <h2 className="text-3xl sm:text-5xl font-medium tracking-[-0.02em] leading-[1.05] mb-12">
+          추가 비용 없이 포함됩니다.
+        </h2>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-10">
+          {basicServices.map((item, i) => (
+            <div key={item.title}>
+              <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted mb-3">
+                {String(i + 1).padStart(2, "0")}
+              </p>
+              <h3 className="text-base font-medium tracking-tight mb-2">
+                {item.title}
+              </h3>
+              <p className="text-sm text-foreground/75 leading-[1.7]">
+                {item.description}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── 4. 기술 스택 ────────────────────────────────────── */}
+      <section className="py-14 sm:py-20 border-b border-border">
+        <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted mb-6">
+          Tech Stack · 사용 기술
+        </p>
+        <h2 className="text-3xl sm:text-5xl font-medium tracking-[-0.02em] leading-[1.05] mb-6">
+          검증된 기술로 튼튼하게.
+        </h2>
+        <p className="text-base text-foreground/75 leading-[1.7] max-w-2xl mb-12 sm:mb-14">
+          {techStackNote}
+        </p>
+
+        <TechStack />
+      </section>
+
+      {/* ── 5. 진행 절차 ────────────────────────────────────── */}
+      <section className="py-14 sm:py-20 border-b border-border">
+        <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted mb-6">
+          Process · 진행 절차
+        </p>
+        <h2 className="text-3xl sm:text-5xl font-medium tracking-[-0.02em] leading-[1.05] mb-12 sm:mb-16">
+          투명하고 체계적인 {processSteps.length}단계.
+        </h2>
+
+        <div className="divide-y divide-border">
+          {processSteps.map((step) => (
+            <div
+              key={step.step}
+              className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-10 py-8"
+            >
+              <div className="shrink-0 sm:w-24">
+                <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted block mb-1">
+                  Step
+                </span>
+                <span className="font-mono text-4xl sm:text-5xl font-bold text-foreground/10 leading-none tabular-nums select-none">
+                  {String(step.step).padStart(2, "0")}
+                </span>
+              </div>
+              <div className="flex-1 pt-1">
+                <h3 className="text-lg font-medium tracking-tight mb-2">
+                  {step.title}
+                </h3>
+                <p className="text-sm text-foreground/75 leading-[1.7] max-w-2xl">
+                  {step.description}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── 6. 준비사항 ─────────────────────────────────────── */}
+      <section className="py-14 sm:py-20 border-b border-border">
+        <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted mb-6">
+          Checklist · 준비사항
+        </p>
+        <h2 className="text-3xl sm:text-5xl font-medium tracking-[-0.02em] leading-[1.05] mb-5">
+          미리 준비해 주시면 좋아요.
+        </h2>
+        <p className="text-base text-foreground/75 leading-[1.7] max-w-2xl mb-12 sm:mb-14">
+          {clientPrepNote}
+        </p>
+
+        <ol className="divide-y divide-border">
+          {clientPrep.map((item, idx) => (
+            <li
+              key={item.title}
+              className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-10 py-8"
+            >
+              <div className="shrink-0 sm:w-24">
+                <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted block mb-1">
+                  Item
+                </span>
+                <span className="font-mono text-4xl sm:text-5xl font-bold text-foreground/10 leading-none tabular-nums select-none">
+                  {String(idx + 1).padStart(2, "0")}
+                </span>
+              </div>
+              <div className="flex-1 pt-1">
+                <h3 className="text-lg font-medium tracking-tight mb-2">
+                  {item.title}
+                </h3>
+                <p className="text-sm text-foreground/75 leading-[1.7] max-w-2xl">
+                  {item.description}
+                </p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      {/* ── 7. 유료 옵션 ────────────────────────────────────── */}
+      <section className="py-14 sm:py-20 border-b border-border">
+        <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted mb-6">
+          Optional · 유료 서비스
+        </p>
+        <h2 className="text-3xl sm:text-5xl font-medium tracking-[-0.02em] leading-[1.05] mb-3 sm:mb-4">
+          선택적으로 추가할 수 있어요.
+        </h2>
+        <p className="text-sm text-muted leading-relaxed mb-12 sm:mb-14 max-w-xl">
+          아래 항목은 의뢰인께서 직접 결제하시는 외부 서비스입니다. 필요 여부는
+          상담 시 함께 결정합니다.
+        </p>
+
+        <div className="divide-y divide-border">
+          {paidServices.map((item, idx) => (
+            <div
+              key={item.title}
+              className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-10 py-8"
+            >
+              <div className="shrink-0 sm:w-24">
+                <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted block mb-1">
+                  Option
+                </span>
+                <span className="font-mono text-4xl sm:text-5xl font-bold text-foreground/10 leading-none tabular-nums select-none">
+                  {String(idx + 1).padStart(2, "0")}
+                </span>
+              </div>
+              <div className="flex-1 pt-1">
+                <h3 className="text-lg font-medium tracking-tight mb-2">
+                  {item.title}
+                </h3>
+                <p className="text-sm text-foreground/75 leading-[1.7] max-w-2xl">
+                  {item.description}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── 8. 가격 ─────────────────────────────────────────── */}
+      <section className="py-14 sm:py-20 border-b border-border">
+        <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted mb-6">
+          Pricing · 패키지
+        </p>
+        <h2 className="text-3xl sm:text-5xl font-medium tracking-[-0.02em] leading-[1.05] mb-4">
+          명확한 가격.
+          <br />
+          숨겨진 비용 없음.
+        </h2>
+        <p className="text-base text-foreground/75 leading-[1.7] max-w-xl mb-12">
+          패키지를 선택하시면 상세 구성과 비교 내용을 확인하실 수 있습니다.
+        </p>
+
+        <PricingTable />
+      </section>
+
+      {/* ── 9. 포트폴리오 티저 ──────────────────────────────── */}
+      <section className="py-14 sm:py-20 border-b border-border">
+        <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted mb-6">
+          Portfolio · 작업물
+        </p>
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-8">
+          <h2 className="text-3xl sm:text-5xl font-medium tracking-[-0.02em] leading-[1.05] max-w-[20ch]">
+            직접 만든 웹 프로젝트들을 확인해 보세요.
+          </h2>
+          <Link
+            href="/portfolio"
+            className="shrink-0 bg-accent text-white hover:bg-accent/90 rounded-md px-6 py-3.5 text-sm font-semibold transition-colors self-start"
+          >
+            포트폴리오 보기 →
+          </Link>
+        </div>
+      </section>
+
+      {/* ── 10. 마무리 CTA ──────────────────────────────────── */}
+      <section className="py-14 sm:py-20">
+        <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted mb-6">
+          Contact · 문의
+        </p>
+        <h2 className="text-3xl sm:text-5xl font-medium tracking-[-0.02em] leading-[1.05] mb-8 max-w-[22ch]">
+          기획이 없어도 괜찮습니다.
+          <br />
+          함께 만들어 드립니다.
+        </h2>
+        <p className="mb-10 max-w-lg text-base text-foreground/75 leading-[1.7]">
+          {serviceOverview.paragraphs[1]}
+        </p>
+        <a
+          href={KAKAO_OPEN_CHAT}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 bg-accent text-white hover:bg-accent/90 rounded-md px-8 py-4 text-sm font-semibold transition-colors"
+        >
+          카카오톡으로 문의하기 →
+        </a>
+      </section>
     </div>
   );
 }
