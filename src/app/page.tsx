@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CategoryNav } from "@/components/CategoryNav";
 import { TechStack } from "@/components/TechStack";
 import { PricingTable } from "@/components/PricingTable";
 import {
@@ -16,6 +17,20 @@ import {
 export default function HomePage() {
   return (
     <div className="mx-auto max-w-6xl px-6 sm:px-10">
+      <CategoryNav
+        items={[
+          { slug: "service", name: "서비스 소개" },
+          { slug: "included", name: "포함 사항" },
+          { slug: "tech", name: "기술 스택" },
+          { slug: "process", name: "진행 절차" },
+          { slug: "checklist", name: "준비사항" },
+          { slug: "optional", name: "유료 옵션" },
+          { slug: "pricing", name: "가격" },
+          { slug: "portfolio", name: "포트폴리오" },
+          { slug: "contact", name: "문의" },
+        ]}
+      />
+
       {/* ── 1. Hero ─────────────────────────────────────────── */}
       <section className="relative pt-16 pb-14 sm:pt-24 sm:pb-20 border-b border-border">
         <div className="rise rise-1 flex items-center gap-3 mb-10">
@@ -73,7 +88,10 @@ export default function HomePage() {
       </section>
 
       {/* ── 3. 기본 포함 사항 ───────────────────────────────── */}
-      <section className="py-14 sm:py-20 border-b border-border">
+      <section
+        id="included"
+        className="py-14 sm:py-20 border-b border-border scroll-mt-20"
+      >
         <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted mb-6">
           Included · 기본 포함 사항
         </p>
@@ -99,7 +117,10 @@ export default function HomePage() {
       </section>
 
       {/* ── 4. 기술 스택 ────────────────────────────────────── */}
-      <section className="py-14 sm:py-20 border-b border-border">
+      <section
+        id="tech"
+        className="py-14 sm:py-20 border-b border-border scroll-mt-20"
+      >
         <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted mb-6">
           Tech Stack · 사용 기술
         </p>
@@ -114,7 +135,10 @@ export default function HomePage() {
       </section>
 
       {/* ── 5. 진행 절차 ────────────────────────────────────── */}
-      <section className="py-14 sm:py-20 border-b border-border">
+      <section
+        id="process"
+        className="py-14 sm:py-20 border-b border-border scroll-mt-20"
+      >
         <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted mb-6">
           Process · 진행 절차
         </p>
@@ -150,7 +174,10 @@ export default function HomePage() {
       </section>
 
       {/* ── 6. 준비사항 ─────────────────────────────────────── */}
-      <section className="py-14 sm:py-20 border-b border-border">
+      <section
+        id="checklist"
+        className="py-14 sm:py-20 border-b border-border scroll-mt-20"
+      >
         <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted mb-6">
           Checklist · 준비사항
         </p>
@@ -189,7 +216,10 @@ export default function HomePage() {
       </section>
 
       {/* ── 7. 유료 옵션 ────────────────────────────────────── */}
-      <section className="py-14 sm:py-20 border-b border-border">
+      <section
+        id="optional"
+        className="py-14 sm:py-20 border-b border-border scroll-mt-20"
+      >
         <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted mb-6">
           Optional · 유료 서비스
         </p>
@@ -229,7 +259,10 @@ export default function HomePage() {
       </section>
 
       {/* ── 8. 가격 ─────────────────────────────────────────── */}
-      <section className="py-14 sm:py-20 border-b border-border">
+      <section
+        id="pricing"
+        className="py-14 sm:py-20 border-b border-border scroll-mt-20"
+      >
         <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted mb-6">
           Pricing · 패키지
         </p>
@@ -246,7 +279,10 @@ export default function HomePage() {
       </section>
 
       {/* ── 9. 포트폴리오 티저 ──────────────────────────────── */}
-      <section className="py-14 sm:py-20 border-b border-border">
+      <section
+        id="portfolio"
+        className="py-14 sm:py-20 border-b border-border scroll-mt-20"
+      >
         <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted mb-6">
           Portfolio · 작업물
         </p>
@@ -264,7 +300,7 @@ export default function HomePage() {
       </section>
 
       {/* ── 10. 마무리 CTA ──────────────────────────────────── */}
-      <section className="py-14 sm:py-20">
+      <section id="contact" className="py-14 sm:py-20 scroll-mt-20">
         <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted mb-6">
           Contact · 문의
         </p>
