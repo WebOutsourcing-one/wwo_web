@@ -57,8 +57,9 @@ export default function ReviewsPage() {
             아직 후기가 없습니다
           </h2>
           <p className="mt-4 max-w-sm text-sm sm:text-base text-muted leading-[1.7]">
-            첫 후기의 주인공이 되어 주세요. 프로젝트가 끝나면 이곳에 소중한
-            후기를 정성껏 담겠습니다.
+            첫 후기의 주인공이 되어 주세요. 프로젝트가 끝나면
+            <br />
+            이곳에 소중한 후기를 정성껏 담겠습니다.
           </p>
           <a
             href={KAKAO_OPEN_CHAT}
