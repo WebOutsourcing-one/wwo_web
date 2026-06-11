@@ -41,6 +41,9 @@ export const metadata: Metadata = {
   authors: [{ name: "Web Outsourcing One" }],
   creator: "Web Outsourcing One",
   alternates: { canonical: "/" },
+  verification: {
+    google: "GeiP0qQIZ-uRqlzCbr_OzPFUrV6cTeSMYVjsxLcHYWQ",
+  },
   robots: {
     index: true,
     follow: true,
