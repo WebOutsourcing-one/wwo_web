@@ -2,13 +2,13 @@
 // 카피는 의뢰인 제공 원문을 기준으로 정리했습니다.
 
 /** 배포된 사이트의 정식 URL (OG/canonical/sitemap 등 절대경로 기준). 도메인 변경 시 이 값만 수정하세요. */
-export const SITE_URL = "https://wwo-web.vercel.app";
+export const SITE_URL = "https://woo.it.kr";
 
 export const KAKAO_OPEN_CHAT = "https://open.kakao.com/o/s46m1jvi";
 
 export const CONTACT_EMAIL = "jjong015189c@gmail.com";
 
-export const PORTFOLIO_URL = "https://wwo-web.vercel.app/";
+export const PORTFOLIO_URL = "https://woo.it.kr/";
 
 /** 홈/상세 상단에서 반복되는 핵심 한 줄 */
 export const SERVICE_TAGLINE = "합리적인 가격으로 완성하는 홈페이지 제작";
