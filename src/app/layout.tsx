@@ -104,6 +104,12 @@ export default function RootLayout({
               >
                 가격
               </Link>
+              <Link
+                href="/reviews"
+                className="text-foreground/70 hover:text-foreground transition-colors"
+              >
+                후기
+              </Link>
               <a
                 href="https://open.kakao.com/o/s46m1jvi"
                 target="_blank"
