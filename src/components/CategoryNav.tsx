@@ -45,7 +45,7 @@ export function CategoryNav({ items }: { items: Item[] }) {
       className="hidden md:block fixed right-3 lg:right-4 top-1/2 -translate-y-1/2 z-50"
     >
       <div className="pointer-events-auto rounded-xl border border-border bg-background/55 backdrop-blur-xl backdrop-saturate-150 shadow-[0_8px_30px_-12px_rgba(50,30,10,0.18)] px-5 py-5">
-        <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted mb-4">
+        <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted mb-4">
           Index
         </p>
         <ul className="flex flex-col gap-3">
@@ -62,7 +62,7 @@ export function CategoryNav({ items }: { items: Item[] }) {
                       : "font-normal text-muted hover:text-foreground"
                   }`}
                 >
-                  <span className="font-mono text-[10px] opacity-60">
+                  <span className="font-mono text-[11px] opacity-60">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   {item.name}
