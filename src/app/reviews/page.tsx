@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description: REVIEWS_DESC,
   alternates: { canonical: "/reviews" },
   openGraph: {
-    title: "고객 후기 — WOO",
+    title: "고객 후기 - WOO",
     description: REVIEWS_DESC,
     url: "/reviews",
   },

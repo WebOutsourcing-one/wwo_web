@@ -44,7 +44,7 @@ export const siteJsonLd = {
       "@type": "WebSite",
       "@id": WEBSITE_ID,
       url: SITE_URL,
-      name: "WOO — Web Outsourcing One",
+      name: "WOO - Web Outsourcing One",
       description: ORG_DESC,
       inLanguage: "ko-KR",
       publisher: { "@id": ORG_ID },

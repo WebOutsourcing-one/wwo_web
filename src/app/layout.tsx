@@ -26,8 +26,8 @@ const SITE_DESC =
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "WOO — 합리적인 홈페이지 외주 제작",
-    template: "%s — WOO",
+    default: "WOO - 합리적인 홈페이지 외주 제작",
+    template: "%s - WOO",
   },
   description: SITE_DESC,
   keywords: [
@@ -58,13 +58,13 @@ export const metadata: Metadata = {
     type: "website",
     locale: "ko_KR",
     url: SITE_URL,
-    siteName: "WOO — Web Outsourcing One",
-    title: "WOO — 합리적인 홈페이지 외주 제작",
+    siteName: "WOO - Web Outsourcing One",
+    title: "WOO - 합리적인 홈페이지 외주 제작",
     description: SITE_DESC,
   },
   twitter: {
     card: "summary_large_image",
-    title: "WOO — 합리적인 홈페이지 외주 제작",
+    title: "WOO - 합리적인 홈페이지 외주 제작",
     description: SITE_DESC,
   },
 };
@@ -135,7 +135,7 @@ export default function RootLayout({
           <div className="mx-auto max-w-6xl px-6 sm:px-10 py-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs">
             <div className="flex flex-col gap-1">
               <span className="font-mono uppercase tracking-[0.18em] text-muted">
-                © 2026 — Web Outsourcing One
+                © 2026 - Web Outsourcing One
               </span>
               <span className="text-muted/80">Built carefully in Seoul.</span>
             </div>

@@ -194,8 +194,8 @@ export function PricingTable({ showNote = true }: { showNote?: boolean }) {
                   >
                     {value === "O" ? (
                       <span className="text-accent">✓</span>
-                    ) : value === "—" ? (
-                      <span className="text-muted/50">—</span>
+                    ) : value === "-" ? (
+                      <span className="text-muted/50">-</span>
                     ) : (
                       value
                     )}

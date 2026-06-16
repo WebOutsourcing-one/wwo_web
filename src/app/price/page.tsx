@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   description: PRICE_DESC,
   alternates: { canonical: "/price" },
   openGraph: {
-    title: "패키지 안내 — WOO",
+    title: "패키지 안내 - WOO",
     description: PRICE_DESC,
     url: "/price",
   },

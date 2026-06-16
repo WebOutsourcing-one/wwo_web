@@ -3,7 +3,7 @@ import { ImageResponse } from "next/og";
 // 카카오톡·SNS 공유 시 보이는 미리보기 썸네일 (1200×630).
 // app 루트에 위치해 전 페이지에 og:image로 자동 적용됩니다.
 
-export const alt = "WOO — 합리적인 홈페이지 외주 제작";
+export const alt = "WOO - 합리적인 홈페이지 외주 제작";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 

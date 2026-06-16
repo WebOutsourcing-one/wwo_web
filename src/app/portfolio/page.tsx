@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   description: PORTFOLIO_DESC,
   alternates: { canonical: "/portfolio" },
   openGraph: {
-    title: "포트폴리오 — WOO",
+    title: "포트폴리오 - WOO",
     description: PORTFOLIO_DESC,
     url: "/portfolio",
   },
@@ -60,7 +60,7 @@ export default function PortfolioPage() {
           <span aria-hidden className="text-muted/50">
             ·
           </span>
-          <span>2 — 7 days</span>
+          <span>2 - 7 days</span>
         </div>
       </section>
 

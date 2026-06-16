@@ -299,8 +299,8 @@ export const comparisonRows: ComparisonRow[] = [
   { label: "수정 횟수", values: ["범위당 +1,000원", "1회", "3회", "협의"] },
   { label: "반응형 웹", values: ["O", "O", "O", "O"] },
   { label: "소스 코드 제공", values: ["옵션", "옵션", "옵션", "O"] },
-  { label: "맞춤 디자인 제공", values: ["—", "—", "O", "O"] },
-  { label: "백엔드 · DB", values: ["—", "—", "—", "O"] },
+  { label: "맞춤 디자인 제공", values: ["-", "-", "O", "O"] },
+  { label: "백엔드 · DB", values: ["-", "-", "-", "O"] },
 ];
 
 export const pricingNote =
