@@ -220,25 +220,25 @@ export type Package = {
 export const packages: Package[] = [
   {
     tier: "STANDARD",
-    price: 10000,
-    priceLabel: "10,000원",
+    price: 20000,
+    priceLabel: "20,000원",
     priceUnit: "수정 범위당 +1,000원",
     tagline: "홈페이지 수정",
     summary:
-      "텍스트 변경, 위치 조정 등 기존 태그 구조를 유지한 단순 수정. 기본 10,000원에 수정 범위당 1,000원씩 합산됩니다.",
+      "텍스트 변경, 위치 조정 등 기존 태그 구조를 유지한 단순 수정. 기본 20,000원에 수정 범위당 1,000원씩 합산됩니다.",
     pages: "0페이지",
     duration: "2일",
     revisions: "범위당 +1,000원",
     features: [
       "기존 태그 구조 유지 단순 수정",
       "텍스트 변경 · 위치 조정",
-      "기본 10,000원 + 수정 범위당 1,000원",
+      "기본 20,000원 + 수정 범위당 1,000원",
     ],
   },
   {
     tier: "DELUXE",
-    price: 50000,
-    priceLabel: "50,000원",
+    price: 100000,
+    priceLabel: "100,000원",
     priceUnit: "페이지 추가당 +30,000원",
     tagline: "간단한 소개형 웹 페이지",
     summary: "소규모 · 개인 브랜드를 위한 5섹션 이하 소개형 홈페이지",
@@ -255,8 +255,8 @@ export const packages: Package[] = [
   },
   {
     tier: "PREMIUM",
-    price: 150000,
-    priceLabel: "150,000원",
+    price: 200000,
+    priceLabel: "200,000원",
     tagline: "문의/예약/신청 기능 포함 웹사이트",
     summary: "각종 신청 폼, 이메일 알림, 지도/연락처/링크 연결이 포함된 6페이지 이하 사이트",
     pages: "5페이지",
