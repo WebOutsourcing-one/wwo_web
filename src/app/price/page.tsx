@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PricingTable } from "@/components/PricingTable";
+import { JsonLd } from "@/components/JsonLd";
 import { KAKAO_OPEN_CHAT, pricingNote } from "@/data/service";
+import { serviceJsonLd } from "@/data/structured-data";
 
 const PRICE_DESC =
   "합리적인 가격, 명확한 범위. STANDARD · DELUXE · PREMIUM · ENTERPRISE 패키지를 비교하고 나에게 맞는 옵션을 선택하세요.";
@@ -20,6 +22,7 @@ export const metadata: Metadata = {
 export default function PricePage() {
   return (
     <div className="mx-auto max-w-6xl px-6 sm:px-10">
+      <JsonLd data={serviceJsonLd} />
       {/* 헤더 */}
       <section className="relative pt-10 pb-14 sm:pt-14 sm:pb-20 border-b border-border">
         <Link

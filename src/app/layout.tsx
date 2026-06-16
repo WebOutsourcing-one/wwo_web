@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Hahmlet, JetBrains_Mono } from "next/font/google";
 import Link from "next/link";
 import { SITE_URL } from "@/data/service";
+import { siteJsonLd } from "@/data/structured-data";
+import { JsonLd } from "@/components/JsonLd";
 import "./globals.css";
 
 const hahmlet = Hahmlet({
@@ -78,6 +80,7 @@ export default function RootLayout({
       className={`${hahmlet.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground relative">
+        <JsonLd data={siteJsonLd} />
         <div
           aria-hidden
           className="pointer-events-none fixed inset-0 z-[1] opacity-[0.06] mix-blend-multiply"
