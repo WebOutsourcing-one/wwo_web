@@ -204,7 +204,7 @@ export const clientPrepNote =
 
 /** 가격 / 패키지 */
 export type Package = {
-  tier: "STANDARD" | "DELUXE" | "PREMIUM" | "ENTERPRISE";
+  tier: "STANDARD" | "LITE" | "DELUXE" | "PREMIUM" | "ENTERPRISE";
   price: number;
   priceLabel: string;
   priceUnit?: string; // 가격 아래 보조 표기 (예: "수정 범위당 +1,000원")
@@ -233,6 +233,22 @@ export const packages: Package[] = [
       "기존 태그 구조 유지 단순 수정",
       "텍스트 변경 · 위치 조정",
       "기본 20,000원 + 수정 범위당 1,000원",
+    ],
+  },
+  {
+    tier: "LITE",
+    price: 50000,
+    priceLabel: "50,000원",
+    tagline: "텍스트 중심 정적 페이지",
+    summary:
+      "반응형 없이 텍스트로만 구성하는 1페이지 정적 웹 페이지입니다. 빠르게 정보를 올려야 하는 분께 적합합니다.",
+    pages: "1페이지",
+    duration: "2일",
+    revisions: "1회",
+    features: [
+      "텍스트로만 구성된 1페이지",
+      "정적 웹 페이지 (반응형 미적용)",
+      "작업일 2일 · 수정 1회",
     ],
   },
   {
@@ -290,17 +306,19 @@ export const packages: Package[] = [
 /** 패키지 비교 표의 행 정의 */
 export type ComparisonRow = {
   label: string;
-  values: string[]; // packages 순서: STANDARD, DELUXE, PREMIUM, ENTERPRISE
+  values: string[]; // packages 순서: STANDARD, LITE, DELUXE, PREMIUM, ENTERPRISE
 };
 
 export const comparisonRows: ComparisonRow[] = [
-  { label: "페이지 수", values: ["0페이지", "1페이지~", "5페이지", "맞춤"] },
-  { label: "작업일", values: ["2일", "3일", "7일", "협의"] },
-  { label: "수정 횟수", values: ["범위당 +1,000원", "1회", "3회", "협의"] },
-  { label: "반응형 웹", values: ["O", "O", "O", "O"] },
-  { label: "소스 코드 제공", values: ["옵션", "옵션", "옵션", "O"] },
-  { label: "맞춤 디자인 제공", values: ["-", "-", "O", "O"] },
-  { label: "백엔드 · DB", values: ["-", "-", "-", "O"] },
+  { label: "페이지 수", values: ["0페이지", "1페이지", "1페이지~", "5페이지", "맞춤"] },
+  { label: "작업일", values: ["2일", "2일", "3일", "7일", "협의"] },
+  { label: "수정 횟수", values: ["범위당 +1,000원", "1회", "1회", "3회", "협의"] },
+  { label: "반응형 웹", values: ["O", "-", "O", "O", "O"] },
+  { label: "소스 코드 제공", values: ["옵션", "옵션", "옵션", "옵션", "O"] },
+  { label: "맞춤 디자인 제공", values: ["-", "-", "-", "O", "O"] },
+  { label: "문의/예약/신청 폼", values: ["-", "-", "-", "O", "O"] },
+  { label: "이메일 알림 · 외부 연동", values: ["-", "-", "-", "O", "O"] },
+  { label: "백엔드 · DB", values: ["-", "-", "-", "-", "O"] },
 ];
 
 export const pricingNote =

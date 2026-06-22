@@ -6,7 +6,7 @@ import { KAKAO_OPEN_CHAT, pricingNote } from "@/data/service";
 import { serviceJsonLd } from "@/data/structured-data";
 
 const PRICE_DESC =
-  "합리적인 가격, 명확한 범위. STANDARD · DELUXE · PREMIUM · ENTERPRISE 패키지를 비교하고 나에게 맞는 옵션을 선택하세요.";
+  "합리적인 가격, 명확한 범위. STANDARD · LITE · DELUXE · PREMIUM · ENTERPRISE 패키지를 비교하고 나에게 맞는 옵션을 선택하세요.";
 
 export const metadata: Metadata = {
   title: "패키지 안내",
@@ -46,7 +46,7 @@ export default function PricePage() {
           명확한 범위
         </h1>
         <p className="rise rise-3 mt-6 text-base sm:text-lg text-foreground/80 max-w-xl leading-[1.7]">
-          세 가지 패키지 중 작업 범위에 맞는 옵션을 선택하시면 됩니다.
+          다섯 가지 패키지 중 작업 범위에 맞는 옵션을 선택하시면 됩니다.
           정확한 견적은 상담 후 안내해 드리니, 먼저 아래 비교표를 참고해 보세요.
         </p>
       </section>

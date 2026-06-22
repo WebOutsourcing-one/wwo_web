@@ -11,9 +11,10 @@ import {
 
 const tierLabel: Record<Package["tier"], string> = {
   STANDARD: "01 / Standard",
-  DELUXE: "02 / Deluxe",
-  PREMIUM: "03 / Premium",
-  ENTERPRISE: "04 / Enterprise",
+  LITE: "02 / Lite",
+  DELUXE: "03 / Deluxe",
+  PREMIUM: "04 / Premium",
+  ENTERPRISE: "05 / Enterprise",
 };
 
 const defaultIndex = Math.max(
@@ -36,7 +37,7 @@ export function PricingTable({ showNote = true }: { showNote?: boolean }) {
       <div
         role="tablist"
         aria-label="패키지 선택"
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5"
       >
         {packages.map((pkg, i) => {
           const isActive = i === active;
