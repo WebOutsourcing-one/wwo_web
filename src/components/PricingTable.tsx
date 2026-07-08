@@ -4,17 +4,18 @@ import { useState } from "react";
 import {
   packages,
   comparisonRows,
+  paidServices,
   pricingNote,
   KAKAO_OPEN_CHAT,
   type Package,
 } from "@/data/service";
 
 const tierLabel: Record<Package["tier"], string> = {
-  STANDARD: "01 / Standard",
-  LITE: "02 / Lite",
-  DELUXE: "03 / Deluxe",
-  PREMIUM: "04 / Premium",
-  ENTERPRISE: "05 / Enterprise",
+  SUBSCRIPTION: "Subscription",
+  STANDARD: "Standard",
+  LITE: "Lite",
+  DELUXE: "Deluxe",
+  ENTERPRISE: "Enterprise",
 };
 
 const defaultIndex = Math.max(
@@ -41,6 +42,11 @@ export function PricingTable({ showNote = true }: { showNote?: boolean }) {
       >
         {packages.map((pkg, i) => {
           const isActive = i === active;
+          // 100,000원(Deluxe)은 자릿수가 길어 기본보다 5px 더 작게.
+          const priceSize =
+            pkg.tier === "DELUXE"
+              ? "text-[23px] sm:text-[29px]"
+              : "text-[28px] sm:text-[34px]";
           return (
             <button
               key={pkg.tier}
@@ -78,7 +84,9 @@ export function PricingTable({ showNote = true }: { showNote?: boolean }) {
                 </span>
               </span>
 
-              <span className="mt-5 text-3xl sm:text-4xl font-semibold tracking-tight tabular-nums">
+              <span
+                className={`mt-3 ${priceSize} font-semibold tracking-tight tabular-nums`}
+              >
                 {pkg.priceLabel}
               </span>
               {pkg.priceUnit && (
@@ -96,28 +104,28 @@ export function PricingTable({ showNote = true }: { showNote?: boolean }) {
 
       {/* 선택된 패키지 상세 패널 */}
       <div className="rounded-lg border border-border bg-background/40 p-6 sm:p-8">
-        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+        <div className="flex flex-col gap-4">
           <div>
             <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-accent">
               {tierLabel[selected.tier]} · 상세
             </p>
-            <h3 className="mt-2 text-2xl sm:text-3xl font-semibold tracking-tight">
+            <h3 className="mt-2 text-2xl sm:text-3xl font-semibold tracking-tight text-pretty">
               {selected.tagline}
             </h3>
           </div>
-          <div className="text-left sm:text-right">
+          <div>
             <span className="block text-3xl sm:text-4xl font-semibold tracking-tight tabular-nums text-accent">
               {selected.priceLabel}
             </span>
             {selected.priceUnit && (
-              <span className="mt-1 block font-mono text-[11px] text-muted">
+              <span className="mt-1 block font-mono text-[11px] text-muted text-pretty">
                 {selected.priceUnit}
               </span>
             )}
           </div>
         </div>
 
-        <p className="mt-4 text-sm sm:text-base text-foreground/80 leading-[1.7] max-w-2xl">
+        <p className="mt-4 text-sm sm:text-base text-foreground/80 leading-[1.7] max-w-5xl">
           {selected.summary}
         </p>
 
@@ -208,8 +216,38 @@ export function PricingTable({ showNote = true }: { showNote?: boolean }) {
         </table>
       </div>
 
+      {/* 별도 비용 안내 — 패키지 가격 미포함 */}
+      <div className="rounded-lg border border-border bg-background/40 p-6 sm:p-7">
+        <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted mb-2">
+          Not included · 별도 비용
+        </p>
+        <p className="text-sm text-foreground/75 leading-[1.7] mb-6 max-w-5xl text-pretty">
+          아래 항목은 패키지 가격에 포함되지 않으며, 의뢰인께서 직접 결제하시는 외부 서비스입니다. 필요 여부는 상담 시 함께 결정합니다. (구독형 패키지는 호스팅·도메인이 포함됩니다.)
+        </p>
+        <ul className="divide-y divide-border">
+          {paidServices.map((item) => (
+            <li
+              key={item.title}
+              className="flex gap-3 py-4 first:pt-0 last:pb-0"
+            >
+              <span aria-hidden className="mt-0.5 shrink-0 text-muted/60">
+                ✕
+              </span>
+              <div>
+                <h4 className="text-sm font-medium tracking-tight mb-1">
+                  {item.title}
+                </h4>
+                <p className="text-sm text-foreground/70 leading-[1.7] max-w-5xl text-pretty">
+                  {item.description}
+                </p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+
       {showNote && (
-        <p className="text-sm text-muted leading-relaxed max-w-2xl">
+        <p className="text-sm text-muted leading-relaxed max-w-5xl">
           {pricingNote}
         </p>
       )}

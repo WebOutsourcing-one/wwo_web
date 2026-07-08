@@ -6,7 +6,7 @@ import { KAKAO_OPEN_CHAT, pricingNote } from "@/data/service";
 import { serviceJsonLd } from "@/data/structured-data";
 
 const PRICE_DESC =
-  "합리적인 가격, 명확한 범위. STANDARD · LITE · DELUXE · PREMIUM · ENTERPRISE 패키지를 비교하고 나에게 맞는 옵션을 선택하세요.";
+  "합리적인 가격, 명확한 범위. SUBSCRIPTION · STANDARD · LITE · DELUXE · ENTERPRISE 패키지를 비교하고 나에게 맞는 옵션을 선택하세요.";
 
 export const metadata: Metadata = {
   title: "패키지 안내",
@@ -40,10 +40,8 @@ export default function PricePage() {
         <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted rise rise-1">
           Pricing
         </p>
-        <h1 className="rise rise-2 mt-4 text-[clamp(2.6rem,7.5vw,5.75rem)] font-semibold leading-[1.04] tracking-[-0.03em]">
-          합리적인 가격,
-          <br />
-          명확한 범위
+        <h1 className="rise rise-2 mt-4 text-[clamp(2.6rem,7.5vw,5.75rem)] font-semibold leading-[1.04] tracking-[-0.03em] text-balance">
+          합리적인 가격, 명확한 범위
         </h1>
         <p className="rise rise-3 mt-6 text-base sm:text-lg text-foreground/80 max-w-xl leading-[1.7]">
           다섯 가지 패키지 중 작업 범위에 맞는 옵션을 선택하시면 됩니다.
@@ -57,11 +55,11 @@ export default function PricePage() {
           Package · Overview
         </p>
 
-        <p className="text-base text-foreground/80 leading-[1.7] max-w-2xl">
+        <p className="text-base text-foreground/80 leading-[1.7] max-w-5xl">
           {pricingNote}
         </p>
 
-        <p className="mt-4 text-sm text-muted leading-[1.7] max-w-2xl">
+        <p className="mt-4 text-sm text-muted leading-[1.7] max-w-5xl">
           아래에서 패키지를 선택하시면 상세 구성과 비교 내용을 확인하실 수 있습니다.
         </p>
       </section>
@@ -80,7 +78,7 @@ export default function PricePage() {
           안내 사항
         </p>
 
-        <dl className="divide-y divide-border max-w-2xl">
+        <dl className="divide-y divide-border max-w-5xl">
           <div className="py-5">
             <dt className="text-sm font-medium tracking-tight mb-1.5">
               견적은 상담 후 확정됩니다

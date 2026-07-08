@@ -37,6 +37,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
   letter-spacing: -0.01em;
   font-feature-settings: "ss01", "ss02";
+  /* 한글은 어절(띄어쓰기) 단위로만 줄바꿈 — 단어 중간에서 끊기지 않도록.
+     아주 긴 URL 등 예외는 넘치지 않게 보완. */
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
 @layer base {

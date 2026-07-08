@@ -52,7 +52,7 @@ export function TechStack() {
         <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent mb-3">
           {selected.name}
         </p>
-        <p className="text-base text-foreground/80 leading-[1.7] max-w-2xl">
+        <p className="text-base text-foreground/80 leading-[1.7] max-w-5xl">
           {selected.description}
         </p>
       </div>

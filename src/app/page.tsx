@@ -8,10 +8,7 @@ import {
   serviceOverview,
   basicServices,
   techStackNote,
-  paidServices,
-  processSteps,
-  clientPrep,
-  clientPrepNote,
+  productionProcess,
 } from "@/data/service";
 
 export default function HomePage() {
@@ -20,13 +17,11 @@ export default function HomePage() {
       <CategoryNav
         items={[
           { slug: "service", name: "서비스 소개" },
-          { slug: "included", name: "포함 사항" },
-          { slug: "tech", name: "기술 스택" },
           { slug: "process", name: "진행 절차" },
-          { slug: "checklist", name: "준비사항" },
-          { slug: "optional", name: "유료 옵션" },
           { slug: "pricing", name: "가격" },
           { slug: "portfolio", name: "포트폴리오" },
+          { slug: "included", name: "포함 사항" },
+          { slug: "tech", name: "기술 스택" },
           { slug: "contact", name: "문의" },
         ]}
       />
@@ -78,7 +73,7 @@ export default function HomePage() {
           <br />
           홈페이지가 아닙니다.
         </h2>
-        <div className="space-y-4 max-w-2xl">
+        <div className="space-y-4 max-w-5xl">
           {serviceOverview.paragraphs.map((para, i) => (
             <p key={i} className="text-base text-foreground/75 leading-[1.7]">
               {para}
@@ -87,7 +82,82 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── 3. 기본 포함 사항 ───────────────────────────────── */}
+      {/* ── 3. 진행 절차 ────────────────────────────────────── */}
+      <section
+        id="process"
+        className="py-14 sm:py-20 border-b border-border scroll-mt-20"
+      >
+        <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted mb-6">
+          Process · 진행 절차
+        </p>
+        <h2 className="text-3xl sm:text-5xl font-medium tracking-[-0.02em] leading-[1.05] mb-12 sm:mb-16">
+          상담부터 오픈까지 {productionProcess.length}단계.
+        </h2>
+
+        <div className="divide-y divide-border">
+          {productionProcess.map((step) => (
+            <div
+              key={step.step}
+              className="flex items-center gap-4 sm:gap-10 py-6"
+            >
+              <span className="shrink-0 sm:w-24 font-mono text-4xl sm:text-5xl font-bold text-foreground/10 leading-none tabular-nums select-none">
+                {String(step.step).padStart(2, "0")}
+              </span>
+              <h3 className="flex-1 text-lg sm:text-xl font-medium tracking-tight">
+                {step.title}
+              </h3>
+            </div>
+          ))}
+        </div>
+
+        <Link
+          href="/process"
+          className="mt-12 inline-flex items-center gap-2 border border-border hover:border-accent hover:text-accent rounded-md px-6 py-3.5 text-sm font-medium transition-colors"
+        >
+          제작 과정 자세히 보기 →
+        </Link>
+      </section>
+
+      {/* ── 4. 가격 ─────────────────────────────────────────── */}
+      <section
+        id="pricing"
+        className="py-14 sm:py-20 border-b border-border scroll-mt-20"
+      >
+        <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted mb-6">
+          Pricing · 패키지
+        </p>
+        <h2 className="text-3xl sm:text-5xl font-medium tracking-[-0.02em] leading-[1.05] mb-4 text-balance">
+          명확한 가격. 숨겨진 비용 없음.
+        </h2>
+        <p className="text-base text-foreground/75 leading-[1.7] max-w-xl mb-12">
+          패키지를 선택하시면 상세 구성과 비교 내용을 확인하실 수 있습니다.
+        </p>
+
+        <PricingTable />
+      </section>
+
+      {/* ── 5. 포트폴리오 티저 ──────────────────────────────── */}
+      <section
+        id="portfolio"
+        className="py-14 sm:py-20 border-b border-border scroll-mt-20"
+      >
+        <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted mb-6">
+          Portfolio · 작업물
+        </p>
+        <div className="flex flex-col items-start gap-8">
+          <h2 className="text-3xl sm:text-5xl font-medium tracking-[-0.02em] leading-[1.05] text-balance">
+            직접 만든 웹 프로젝트들을 확인해 보세요.
+          </h2>
+          <Link
+            href="/portfolio"
+            className="shrink-0 bg-accent text-white hover:bg-accent/90 rounded-md px-6 py-3.5 text-sm font-semibold transition-colors"
+          >
+            포트폴리오 보기 →
+          </Link>
+        </div>
+      </section>
+
+      {/* ── 6. 기본 포함 사항 ───────────────────────────────── */}
       <section
         id="included"
         className="py-14 sm:py-20 border-b border-border scroll-mt-20"
@@ -116,7 +186,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── 4. 기술 스택 ────────────────────────────────────── */}
+      {/* ── 7. 기술 스택 ────────────────────────────────────── */}
       <section
         id="tech"
         className="py-14 sm:py-20 border-b border-border scroll-mt-20"
@@ -127,176 +197,11 @@ export default function HomePage() {
         <h2 className="text-3xl sm:text-5xl font-medium tracking-[-0.02em] leading-[1.05] mb-6">
           검증된 기술로 튼튼하게.
         </h2>
-        <p className="text-base text-foreground/75 leading-[1.7] max-w-2xl mb-12 sm:mb-14">
+        <p className="text-base text-foreground/75 leading-[1.7] max-w-5xl mb-12 sm:mb-14">
           {techStackNote}
         </p>
 
         <TechStack />
-      </section>
-
-      {/* ── 5. 진행 절차 ────────────────────────────────────── */}
-      <section
-        id="process"
-        className="py-14 sm:py-20 border-b border-border scroll-mt-20"
-      >
-        <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted mb-6">
-          Process · 진행 절차
-        </p>
-        <h2 className="text-3xl sm:text-5xl font-medium tracking-[-0.02em] leading-[1.05] mb-12 sm:mb-16">
-          투명하고 체계적인 {processSteps.length}단계.
-        </h2>
-
-        <div className="divide-y divide-border">
-          {processSteps.map((step) => (
-            <div
-              key={step.step}
-              className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-10 py-8"
-            >
-              <div className="shrink-0 sm:w-24">
-                <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted block mb-1">
-                  Step
-                </span>
-                <span className="font-mono text-4xl sm:text-5xl font-bold text-foreground/10 leading-none tabular-nums select-none">
-                  {String(step.step).padStart(2, "0")}
-                </span>
-              </div>
-              <div className="flex-1 pt-1">
-                <h3 className="text-lg font-medium tracking-tight mb-2">
-                  {step.title}
-                </h3>
-                <p className="text-sm text-foreground/75 leading-[1.7] max-w-2xl">
-                  {step.description}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ── 6. 준비사항 ─────────────────────────────────────── */}
-      <section
-        id="checklist"
-        className="py-14 sm:py-20 border-b border-border scroll-mt-20"
-      >
-        <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted mb-6">
-          Checklist · 준비사항
-        </p>
-        <h2 className="text-3xl sm:text-5xl font-medium tracking-[-0.02em] leading-[1.05] mb-5">
-          미리 준비해 주시면 좋아요.
-        </h2>
-        <p className="text-base text-foreground/75 leading-[1.7] max-w-2xl mb-12 sm:mb-14">
-          {clientPrepNote}
-        </p>
-
-        <ol className="divide-y divide-border">
-          {clientPrep.map((item, idx) => (
-            <li
-              key={item.title}
-              className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-10 py-8"
-            >
-              <div className="shrink-0 sm:w-24">
-                <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted block mb-1">
-                  Item
-                </span>
-                <span className="font-mono text-4xl sm:text-5xl font-bold text-foreground/10 leading-none tabular-nums select-none">
-                  {String(idx + 1).padStart(2, "0")}
-                </span>
-              </div>
-              <div className="flex-1 pt-1">
-                <h3 className="text-lg font-medium tracking-tight mb-2">
-                  {item.title}
-                </h3>
-                <p className="text-sm text-foreground/75 leading-[1.7] max-w-2xl">
-                  {item.description}
-                </p>
-              </div>
-            </li>
-          ))}
-        </ol>
-      </section>
-
-      {/* ── 7. 유료 옵션 ────────────────────────────────────── */}
-      <section
-        id="optional"
-        className="py-14 sm:py-20 border-b border-border scroll-mt-20"
-      >
-        <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted mb-6">
-          Optional · 유료 서비스
-        </p>
-        <h2 className="text-3xl sm:text-5xl font-medium tracking-[-0.02em] leading-[1.05] mb-3 sm:mb-4">
-          선택적으로 추가할 수 있어요.
-        </h2>
-        <p className="text-sm text-muted leading-relaxed mb-12 sm:mb-14 max-w-xl">
-          아래 항목은 의뢰인께서 직접 결제하시는 외부 서비스입니다. 필요 여부는
-          상담 시 함께 결정합니다.
-        </p>
-
-        <div className="divide-y divide-border">
-          {paidServices.map((item, idx) => (
-            <div
-              key={item.title}
-              className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-10 py-8"
-            >
-              <div className="shrink-0 sm:w-24">
-                <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted block mb-1">
-                  Option
-                </span>
-                <span className="font-mono text-4xl sm:text-5xl font-bold text-foreground/10 leading-none tabular-nums select-none">
-                  {String(idx + 1).padStart(2, "0")}
-                </span>
-              </div>
-              <div className="flex-1 pt-1">
-                <h3 className="text-lg font-medium tracking-tight mb-2">
-                  {item.title}
-                </h3>
-                <p className="text-sm text-foreground/75 leading-[1.7] max-w-2xl">
-                  {item.description}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ── 8. 가격 ─────────────────────────────────────────── */}
-      <section
-        id="pricing"
-        className="py-14 sm:py-20 border-b border-border scroll-mt-20"
-      >
-        <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted mb-6">
-          Pricing · 패키지
-        </p>
-        <h2 className="text-3xl sm:text-5xl font-medium tracking-[-0.02em] leading-[1.05] mb-4">
-          명확한 가격.
-          <br />
-          숨겨진 비용 없음.
-        </h2>
-        <p className="text-base text-foreground/75 leading-[1.7] max-w-xl mb-12">
-          패키지를 선택하시면 상세 구성과 비교 내용을 확인하실 수 있습니다.
-        </p>
-
-        <PricingTable />
-      </section>
-
-      {/* ── 9. 포트폴리오 티저 ──────────────────────────────── */}
-      <section
-        id="portfolio"
-        className="py-14 sm:py-20 border-b border-border scroll-mt-20"
-      >
-        <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted mb-6">
-          Portfolio · 작업물
-        </p>
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-8">
-          <h2 className="text-3xl sm:text-5xl font-medium tracking-[-0.02em] leading-[1.05] max-w-[20ch]">
-            직접 만든 웹 프로젝트들을 확인해 보세요.
-          </h2>
-          <Link
-            href="/portfolio"
-            className="shrink-0 bg-accent text-white hover:bg-accent/90 rounded-md px-6 py-3.5 text-sm font-semibold transition-colors self-start"
-          >
-            포트폴리오 보기 →
-          </Link>
-        </div>
       </section>
 
       {/* ── 10. 마무리 CTA ──────────────────────────────────── */}

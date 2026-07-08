@@ -108,6 +108,12 @@ export default function RootLayout({
                 포트폴리오
               </Link>
               <Link
+                href="/process"
+                className="text-foreground/70 hover:text-foreground transition-colors"
+              >
+                제작 과정
+              </Link>
+              <Link
                 href="/price"
                 className="text-foreground/70 hover:text-foreground transition-colors"
               >

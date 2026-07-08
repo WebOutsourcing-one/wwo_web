@@ -45,9 +45,8 @@ export default function PortfolioPage() {
           Selected Works
         </p>
 
-        <h1 className="rise rise-2 text-[clamp(2.6rem,7.5vw,5.75rem)] font-semibold leading-[1.04] tracking-[-0.03em] max-w-[16ch]">
-          직접 만든
-          <br />웹 프로젝트들.
+        <h1 className="rise rise-2 text-[clamp(2.6rem,7.5vw,5.75rem)] font-semibold leading-[1.04] tracking-[-0.03em] max-w-[16ch] text-balance">
+          직접 만든 웹 프로젝트들.
         </h1>
 
         <p className="rise rise-3 mt-8 max-w-xl text-base sm:text-lg text-foreground/75 leading-[1.7]">
