@@ -194,19 +194,19 @@ export type Package = {
 export const packages: Package[] = [
   {
     tier: "SUBSCRIPTION",
-    price: 0,
-    priceLabel: "0원",
-    priceUnit: "월 30,000원 (호스팅 · 도메인 · 유지보수 포함)",
-    tagline: "제작비 0원 구독형 홈페이지",
+    price: 30000,
+    priceLabel: "월 30,000원~",
+    priceUnit: "제작비 0원 · DB 추가 시 상향",
+    tagline: "구독형 홈페이지",
     summary:
-      "수백만 원의 초기 제작비 부담을 완전히 없앴습니다. 월 3만 원으로 호스팅, 도메인, 유지보수까지 한 번에 해결됩니다.",
+      "수백만 원의 초기 제작비 부담을 완전히 없앴습니다. 월 30,000원부터 호스팅, 도메인, 유지보수까지 한 번에 해결되며, 데이터베이스 등 기능이 추가되면 사양에 따라 비용이 올라갑니다.",
     highlight: true,
     pages: "협의",
     duration: "협의",
     revisions: "구독 기간 내 지원",
     features: [
       "초기 제작비 0원",
-      "월 30,000원 정기 구독",
+      "월 30,000원부터 정기 구독",
       "호스팅 · 도메인 · 유지보수 포함",
       "반응형 웹 제작",
     ],
