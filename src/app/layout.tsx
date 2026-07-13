@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Hahmlet, JetBrains_Mono } from "next/font/google";
-import Link from "next/link";
 import { SITE_URL } from "@/data/service";
 import { siteJsonLd } from "@/data/structured-data";
 import { JsonLd } from "@/components/JsonLd";
+import { SiteHeader } from "@/components/SiteHeader";
 import "./globals.css";
 
 const hahmlet = Hahmlet({
@@ -89,53 +89,7 @@ export default function RootLayout({
               "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' seed='3'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.5 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>\")",
           }}
         />
-        <header className="sticky top-0 z-30 backdrop-blur-md bg-background/70 border-b border-border">
-          <div className="mx-auto max-w-6xl px-6 sm:px-10 h-16 flex items-center justify-between">
-            <Link
-              href="/"
-              className="flex items-baseline gap-3 tracking-tight group"
-            >
-              <span className="text-lg font-bold">WOO</span>
-              <span className="hidden sm:inline text-[11px] font-mono uppercase tracking-[0.18em] text-muted">
-                Web Outsourcing One
-              </span>
-            </Link>
-            <nav className="flex items-center gap-5 sm:gap-7 text-sm">
-              <Link
-                href="/portfolio"
-                className="text-foreground/70 hover:text-foreground transition-colors"
-              >
-                포트폴리오
-              </Link>
-              <Link
-                href="/process"
-                className="text-foreground/70 hover:text-foreground transition-colors"
-              >
-                제작 과정
-              </Link>
-              <Link
-                href="/price"
-                className="text-foreground/70 hover:text-foreground transition-colors"
-              >
-                가격
-              </Link>
-              <Link
-                href="/reviews"
-                className="text-foreground/70 hover:text-foreground transition-colors"
-              >
-                후기
-              </Link>
-              <a
-                href="https://open.kakao.com/o/s46m1jvi"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-accent hover:opacity-70 transition-opacity"
-              >
-                Contact ↗
-              </a>
-            </nav>
-          </div>
-        </header>
+        <SiteHeader />
         <main className="flex-1 relative z-[2]">{children}</main>
         <footer className="border-t border-border mt-16 relative z-[2]">
           <div className="mx-auto max-w-6xl px-6 sm:px-10 py-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs">
