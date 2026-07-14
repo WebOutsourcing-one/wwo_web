@@ -6,7 +6,7 @@ import { KAKAO_OPEN_CHAT, pricingNote } from "@/data/service";
 import { serviceJsonLd } from "@/data/structured-data";
 
 const PRICE_DESC =
-  "합리적인 가격, 명확한 범위. SUBSCRIPTION · STANDARD · LITE · DELUXE · ENTERPRISE 패키지를 비교하고 나에게 맞는 옵션을 선택하세요.";
+  "합리적인 가격, 명확한 범위. SUBSCRIPTION · STANDARD · DELUXE · ENTERPRISE 패키지를 비교하고 나에게 맞는 옵션을 선택하세요.";
 
 export const metadata: Metadata = {
   title: "패키지 안내",

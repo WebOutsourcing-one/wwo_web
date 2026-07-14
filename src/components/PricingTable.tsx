@@ -13,7 +13,6 @@ import {
 const tierLabel: Record<Package["tier"], string> = {
   SUBSCRIPTION: "Subscription",
   STANDARD: "Standard",
-  LITE: "Lite",
   DELUXE: "Deluxe",
   ENTERPRISE: "Enterprise",
 };
@@ -38,7 +37,7 @@ export function PricingTable({ showNote = true }: { showNote?: boolean }) {
       <div
         role="tablist"
         aria-label="패키지 선택"
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5"
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"
       >
         {packages.map((pkg, i) => {
           const isActive = i === active;
