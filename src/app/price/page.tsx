@@ -6,7 +6,7 @@ import { KAKAO_OPEN_CHAT, pricingNote } from "@/data/service";
 import { serviceJsonLd } from "@/data/structured-data";
 
 const PRICE_DESC =
-  "합리적인 가격, 명확한 범위. SUBSCRIPTION · STANDARD · DELUXE · ENTERPRISE 패키지를 비교하고 나에게 맞는 옵션을 선택하세요.";
+  "합리적인 가격, 명확한 범위. 유지보수 월 30,000원~ · 기능 추가 50,000원~ · 웹 제작 200,000원~ · 풀스택 개발 별도 견적. 필요한 만큼만 선택하세요.";
 
 export const metadata: Metadata = {
   title: "패키지 안내",
@@ -44,8 +44,9 @@ export default function PricePage() {
           합리적인 가격, 명확한 범위
         </h1>
         <p className="rise rise-3 mt-6 text-base sm:text-lg text-foreground/80 max-w-xl leading-[1.7]">
-          다섯 가지 패키지 중 작업 범위에 맞는 옵션을 선택하시면 됩니다.
-          정확한 견적은 상담 후 안내해 드리니, 먼저 아래 비교표를 참고해 보세요.
+          운영만 맡기실지, 기능만 추가하실지, 새로 만드실지에 따라 네 가지 중
+          하나를 고르시면 됩니다. 정확한 견적은 상담 후 안내해 드리니, 먼저 아래
+          비교표를 참고해 보세요.
         </p>
       </section>
 
@@ -87,6 +88,16 @@ export default function PricePage() {
               위 패키지는 기준 가이드이며, 실제 작업 범위와 요구사항에 따라
               최종 견적이 달라질 수 있습니다. 레퍼런스나 기획안을 가볍게 공유해
               주시면 빠르게 안내해 드립니다.
+            </dd>
+          </div>
+          <div className="py-5">
+            <dt className="text-sm font-medium tracking-tight mb-1.5">
+              유지보수 플랜은 꼭 이용해야 하나요?
+            </dt>
+            <dd className="text-sm text-foreground/75 leading-[1.7]">
+              선택 사항입니다. 다만 홈페이지를 계속 켜 두려면 서버 비용과 관리가
+              필요해, 직접 챙기기 부담스러우시면 맡겨 두시는 편이 간편합니다.
+              직접 운영하시겠다면 소스 코드를 그대로 넘겨 드립니다.
             </dd>
           </div>
           <div className="py-5">

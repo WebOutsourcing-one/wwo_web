@@ -72,7 +72,7 @@ export const serviceJsonLd = {
         description: p.summary,
         itemOffered: { "@type": "Service", name: p.tagline },
       };
-      // ENTERPRISE처럼 "별도 견적"(price 0)인 항목은 가격을 표기하지 않습니다.
+      // FULLSTACK처럼 "별도 견적"(price 0)인 항목은 가격을 표기하지 않습니다.
       if (p.price > 0) {
         offer.price = String(p.price);
         offer.priceCurrency = "KRW";

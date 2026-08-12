@@ -6,15 +6,18 @@ import {
   comparisonRows,
   paidServices,
   pricingNote,
+  scopeGuide,
+  scopeGuideIntro,
+  scopeGuideRule,
   KAKAO_OPEN_CHAT,
   type Package,
 } from "@/data/service";
 
 const tierLabel: Record<Package["tier"], string> = {
-  SUBSCRIPTION: "Subscription",
-  STANDARD: "Standard",
-  DELUXE: "Deluxe",
-  ENTERPRISE: "Enterprise",
+  MAINTENANCE: "Maintenance",
+  FEATURE: "Feature",
+  WEBSITE: "Website",
+  FULLSTACK: "Fullstack",
 };
 
 const defaultIndex = Math.max(
@@ -41,11 +44,6 @@ export function PricingTable({ showNote = true }: { showNote?: boolean }) {
       >
         {packages.map((pkg, i) => {
           const isActive = i === active;
-          // 100,000원(Deluxe)은 자릿수가 길어 기본보다 5px 더 작게.
-          const priceSize =
-            pkg.tier === "DELUXE"
-              ? "text-[23px] sm:text-[29px]"
-              : "text-[28px] sm:text-[34px]";
           return (
             <button
               key={pkg.tier}
@@ -83,9 +81,8 @@ export function PricingTable({ showNote = true }: { showNote?: boolean }) {
                 </span>
               </span>
 
-              <span
-                className={`mt-3 ${priceSize} font-semibold tracking-tight tabular-nums`}
-              >
+              {/* "월 30,000원~" 등 자릿수가 긴 라벨이 4열에서 줄바꿈되지 않는 크기 */}
+              <span className="mt-3 text-[24px] sm:text-[30px] font-semibold tracking-tight tabular-nums">
                 {pkg.priceLabel}
               </span>
               {pkg.priceUnit && (
@@ -154,7 +151,7 @@ export function PricingTable({ showNote = true }: { showNote?: boolean }) {
           rel="noopener noreferrer"
           className="mt-8 inline-flex items-center justify-center gap-2 rounded-md bg-accent px-6 py-3.5 text-sm font-semibold text-white hover:bg-accent/90 transition-colors"
         >
-          {selected.tier} 패키지로 상담하기
+          {selected.tagline} 상담하기
           <span aria-hidden>→</span>
         </a>
       </div>
@@ -180,7 +177,7 @@ export function PricingTable({ showNote = true }: { showNote?: boolean }) {
                   <span
                     className={`block ${i === active ? "text-accent" : ""}`}
                   >
-                    {pkg.tier}
+                    {pkg.tagline}
                   </span>
                   <span className="block mt-1 font-mono text-[11px] font-normal text-accent tabular-nums">
                     {pkg.priceLabel}
@@ -215,13 +212,64 @@ export function PricingTable({ showNote = true }: { showNote?: boolean }) {
         </table>
       </div>
 
+      {/* 웹 제작 vs 풀스택 — 두 플랜의 가격 차이를 비개발자 기준으로 설명 */}
+      <div>
+        <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted mb-3">
+          Scope · 웹 제작과 풀스택, 뭐가 다른가요?
+        </p>
+        <p className="text-sm sm:text-base text-foreground/80 leading-[1.7] max-w-5xl text-pretty mb-8">
+          {scopeGuideIntro}
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          {scopeGuide.map((item) => (
+            <div
+              key={item.key}
+              className="flex flex-col rounded-lg border border-border bg-background/40 p-6 sm:p-7"
+            >
+              <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-accent">
+                {item.badge}
+              </p>
+              <h4 className="mt-3 text-xl sm:text-2xl font-semibold tracking-tight text-pretty">
+                {item.title}
+              </h4>
+              <p className="mt-3 text-sm sm:text-base text-foreground/80 leading-[1.7] text-pretty">
+                {item.lead}
+              </p>
+
+              <ul className="mt-6 space-y-2.5">
+                {item.examples.map((example) => (
+                  <li
+                    key={example}
+                    className="flex gap-3 text-sm text-foreground/85"
+                  >
+                    <span aria-hidden className="mt-0.5 text-accent shrink-0">
+                      ✓
+                    </span>
+                    <span className="leading-snug text-pretty">{example}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <p className="mt-6 pt-5 border-t border-border text-sm text-foreground/65 leading-[1.7] text-pretty">
+                {item.note}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        <p className="mt-5 rounded-lg border border-accent/30 bg-accent/[0.05] px-6 py-5 text-sm sm:text-base text-foreground/85 leading-[1.7] text-pretty">
+          {scopeGuideRule}
+        </p>
+      </div>
+
       {/* 별도 비용 안내 — 패키지 가격 미포함 */}
       <div className="rounded-lg border border-border bg-background/40 p-6 sm:p-7">
         <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted mb-2">
           Not included · 별도 비용
         </p>
         <p className="text-sm text-foreground/75 leading-[1.7] mb-6 max-w-5xl text-pretty">
-          아래 항목은 패키지 가격에 포함되지 않으며, 의뢰인께서 직접 결제하시는 외부 서비스입니다. 필요 여부는 상담 시 함께 결정합니다. (구독형 패키지는 호스팅·도메인이 포함됩니다.)
+          아래 항목은 제작 비용에 포함되지 않으며, 의뢰인께서 직접 결제하시는 외부 서비스입니다. 필요 여부는 상담 시 함께 결정합니다. (유지보수 플랜을 이용하시면 호스팅 비용과 서버 관리가 함께 해결됩니다.)
         </p>
         <ul className="divide-y divide-border">
           {paidServices.map((item) => (

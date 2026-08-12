@@ -3,7 +3,7 @@ import Link from "next/link";
 import { KAKAO_OPEN_CHAT, productionProcess } from "@/data/service";
 
 const PROCESS_DESC =
-  "상담부터 오픈·유지보수까지 4단계. 복잡한 준비 없이 뼈대 자료만 주시면 호스팅·도메인·유지보수까지 한 번에 해결하는 구독형 홈페이지 제작 과정을 안내합니다.";
+  "상담부터 오픈·유지보수까지 4단계. 복잡한 준비 없이 뼈대 자료만 주시면 제작부터 호스팅·도메인 연결, 이후 운영 관리까지 이어서 맡아 드립니다.";
 
 export const metadata: Metadata = {
   title: "제작 과정",
@@ -43,8 +43,8 @@ export default function ProcessPage() {
           상담부터 오픈까지, {productionProcess.length}단계면 끝.
         </h1>
         <p className="rise rise-3 mt-6 text-base sm:text-lg text-foreground/80 max-w-xl leading-[1.7]">
-          복잡한 준비 없이 뼈대 자료만 주시면
-          호스팅·도메인·유지보수까지 저희가 한 번에 책임집니다.
+          복잡한 준비 없이 뼈대 자료만 주시면 제작부터 호스팅·도메인 연결,
+          이후 운영 관리까지 저희가 이어서 맡아 드립니다.
         </p>
       </section>
 
