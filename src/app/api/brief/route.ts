@@ -16,6 +16,8 @@ import { isValidBriefToken } from "@/lib/brief-token";
 import { MailNotConfiguredError, sendMail, type MailAttachment } from "@/lib/mailer";
 
 export const runtime = "nodejs";
+// 4MB 가까운 첨부를 SMTP로 보내는 데 몇 초가 걸릴 수 있어, 기본 실행 시간보다 넉넉히 잡습니다.
+export const maxDuration = 60;
 
 /** 요청 본문 상한 (Vercel 4.5MB 한도 안쪽) */
 const MAX_REQUEST_BYTES = 4.4 * 1024 * 1024;

@@ -492,12 +492,14 @@ function readFieldValues(answers: BriefAnswers, field: BriefField): string[] {
   return values.map((v) => v.trim()).filter(Boolean);
 }
 
-/** 첨부 파일명 정리: 경로·제어 문자 제거, 길이 제한 */
-export const sanitizeFilename = (name: string) =>
-  name
-    .replace(/[\\/:*?"<>|\u0000-\u001f]/g, "_")
-    .replace(/\s+/g, "_")
-    .slice(-90);
+/** 첨부 파일명 정리: 경로·제어 문자 제거, 확장자는 살리고 이름만 길이 제한 */
+export const sanitizeFilename = (name: string, max = 90) => {
+  const cleaned = name.replace(/[\\/:*?"<>|\u0000-\u001f]/g, "_").replace(/\s+/g, "_");
+  if (cleaned.length <= max) return cleaned;
+  const dot = cleaned.lastIndexOf(".");
+  const ext = dot > 0 && cleaned.length - dot <= 6 ? cleaned.slice(dot) : "";
+  return cleaned.slice(0, max - ext.length) + ext;
+};
 
 /** 같은 폴더에 내려받은 첨부를 .md 안에서 바로 보이게 하는 링크 */
 const fileLink = (name: string) => {

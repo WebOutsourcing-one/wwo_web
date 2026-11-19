@@ -41,7 +41,8 @@ function nameFiles(files: Record<string, File[]>): NamedFile[] {
     (files[slot.id] ?? []).map((file, i) => ({
       slotId: slot.id,
       file,
-      name: sanitizeFilename(`${slot.id}-${String(i + 1).padStart(2, "0")}-${file.name}`),
+      // 원본 이름만 줄인 뒤 앞에 구분자를 붙여, 긴 이름이어도 "desktop-01-"이 잘리지 않게 합니다.
+      name: `${slot.id}-${String(i + 1).padStart(2, "0")}-${sanitizeFilename(file.name, 70)}`,
     }))
   );
 }
@@ -99,25 +100,26 @@ export function BriefForm({ token }: { token: string }) {
   const [files, setFiles] = useState<Record<string, File[]>>({});
   const [busySlots, setBusySlots] = useState<Record<string, boolean>>({});
   const [status, setStatus] = useState<Status>({ kind: "idle" });
-  const restored = useRef(false);
+  const [draftReady, setDraftReady] = useState(false);
   const progress = useRef<Progress | null>(null);
 
   // 작성 중인 답변을 이 브라우저에만 임시 보관 (파일은 제외). 실수로 창을 닫아도 이어서 쓸 수 있습니다.
+  // 복원이 끝나기 전(draftReady=false)에는 저장하지 않아야, 첫 렌더의 빈 값이 저장본을 덮어쓰지 않습니다.
   useEffect(() => {
     try {
       const saved = localStorage.getItem(DRAFT_KEY);
       // eslint-disable-next-line react-hooks/set-state-in-effect -- 마운트 시 1회 복원
       if (saved) setAnswers(JSON.parse(saved));
     } catch {}
-    restored.current = true;
+    setDraftReady(true);
   }, []);
 
   useEffect(() => {
-    if (!restored.current) return;
+    if (!draftReady) return;
     try {
       localStorage.setItem(DRAFT_KEY, JSON.stringify(answers));
     } catch {}
-  }, [answers]);
+  }, [answers, draftReady]);
 
   const totalBytes = useMemo(
     () => Object.values(files).flat().reduce((sum, f) => sum + f.size, 0),
