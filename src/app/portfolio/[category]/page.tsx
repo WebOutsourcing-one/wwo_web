@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { categories, getCategory } from "@/data/categories";
+import { visibleCategories as categories, getCategory } from "@/data/categories";
 import { ProjectCarousel } from "@/components/ProjectCarousel";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbJsonLd } from "@/data/structured-data";
 
 export function generateStaticParams() {
   return categories.map((c) => ({ category: c.slug }));
@@ -40,6 +42,12 @@ export default async function CategoryPage({
 
   return (
     <div className="mx-auto max-w-6xl px-6 sm:px-10">
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: "포트폴리오", path: "/portfolio" },
+          { name: cat.name, path: `/portfolio/${cat.slug}` },
+        ])}
+      />
       <section className="relative pt-10 pb-10 sm:pt-14 sm:pb-12 border-b border-border">
         <Link
           href="/portfolio"

@@ -8,7 +8,7 @@ const navLinks = [
   { href: "/portfolio", label: "포트폴리오" },
   { href: "/process", label: "제작 과정" },
   { href: "/price", label: "가격" },
-  { href: "/reviews", label: "후기" },
+  // 후기가 생기면 { href: "/reviews", label: "후기" } 를 다시 추가하세요.
 ];
 
 /**

@@ -69,7 +69,7 @@ export function ProjectCarousel({
             type="button"
             onClick={go(-1)}
             aria-label="이전 이미지"
-            className="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 z-10 grid place-items-center w-9 h-9 rounded-full bg-background/85 backdrop-blur text-foreground shadow-sm opacity-0 group-hover/carousel:opacity-100 transition-opacity hover:bg-background"
+            className="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 z-10 grid place-items-center w-9 h-9 rounded-full bg-background/85 backdrop-blur text-foreground shadow-sm [@media(hover:hover)]:opacity-0 [@media(hover:hover)]:group-hover/carousel:opacity-100 transition-opacity hover:bg-background"
           >
             <svg
               aria-hidden
@@ -89,7 +89,7 @@ export function ProjectCarousel({
             type="button"
             onClick={go(1)}
             aria-label="다음 이미지"
-            className="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 z-10 grid place-items-center w-9 h-9 rounded-full bg-background/85 backdrop-blur text-foreground shadow-sm opacity-0 group-hover/carousel:opacity-100 transition-opacity hover:bg-background"
+            className="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 z-10 grid place-items-center w-9 h-9 rounded-full bg-background/85 backdrop-blur text-foreground shadow-sm [@media(hover:hover)]:opacity-0 [@media(hover:hover)]:group-hover/carousel:opacity-100 transition-opacity hover:bg-background"
           >
             <svg
               aria-hidden
@@ -106,7 +106,7 @@ export function ProjectCarousel({
             </svg>
           </button>
 
-          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-10 flex gap-1.5 opacity-0 group-hover/carousel:opacity-100 transition-opacity">
+          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-10 flex gap-1.5 [@media(hover:hover)]:opacity-0 [@media(hover:hover)]:group-hover/carousel:opacity-100 transition-opacity">
             {images.map((_, i) => (
               <span
                 key={i}
@@ -117,7 +117,7 @@ export function ProjectCarousel({
             ))}
           </div>
 
-          <div className="absolute top-3 right-3 z-10 px-2 py-0.5 rounded-full bg-background/85 backdrop-blur text-[10px] font-mono text-muted opacity-0 group-hover/carousel:opacity-100 transition-opacity">
+          <div className="absolute top-3 right-3 z-10 px-2 py-0.5 rounded-full bg-background/85 backdrop-blur text-[10px] font-mono text-muted [@media(hover:hover)]:opacity-0 [@media(hover:hover)]:group-hover/carousel:opacity-100 transition-opacity">
             {idx + 1} / {total}
           </div>
         </>

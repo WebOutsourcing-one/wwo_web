@@ -2,11 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PricingTable } from "@/components/PricingTable";
 import { JsonLd } from "@/components/JsonLd";
-import { KAKAO_OPEN_CHAT, pricingNote } from "@/data/service";
-import { serviceJsonLd } from "@/data/structured-data";
+import { KAKAO_OPEN_CHAT, pricingNote, packages } from "@/data/service";
+import { breadcrumbJsonLd, serviceJsonLd } from "@/data/structured-data";
+import { FaqList } from "@/components/FaqList";
 
-const PRICE_DESC =
-  "합리적인 가격, 명확한 범위. 유지보수 월 30,000원~ · 기능 추가 50,000원~ · 웹 제작 200,000원~ · 풀스택 개발 별도 견적. 필요한 만큼만 선택하세요.";
+const PRICE_DESC = `합리적인 가격, 명확한 범위. ${packages
+  .map((p) => `${p.tagline} ${p.priceLabel}`)
+  .join(" · ")}. 납품 후 수정·기능 추가 비용까지 미리 공개합니다.`;
 
 export const metadata: Metadata = {
   title: "패키지 안내",
@@ -23,6 +25,7 @@ export default function PricePage() {
   return (
     <div className="mx-auto max-w-6xl px-6 sm:px-10">
       <JsonLd data={serviceJsonLd} />
+      <JsonLd data={breadcrumbJsonLd([{ name: "가격", path: "/price" }])} />
       {/* 헤더 */}
       <section className="relative pt-10 pb-14 sm:pt-14 sm:pb-20 border-b border-border">
         <Link
@@ -44,24 +47,11 @@ export default function PricePage() {
           합리적인 가격, 명확한 범위
         </h1>
         <p className="rise rise-3 mt-6 text-base sm:text-lg text-foreground/80 max-w-xl leading-[1.7]">
-          운영만 맡기실지, 기능만 추가하실지, 새로 만드실지에 따라 네 가지 중
-          하나를 고르시면 됩니다. 정확한 견적은 상담 후 안내해 드리니, 먼저 아래
-          비교표를 참고해 보세요.
+          보여주는 사이트는 웹 제작, 정보가 쌓이는 서비스는 풀스택 개발로
+          진행합니다. 완성 후 운영은 원하실 때만 유지보수로 맡기시면 됩니다.
         </p>
-      </section>
-
-      {/* 공통 안내 */}
-      <section className="py-14 sm:py-20 border-b border-border">
-        <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted mb-8">
-          Package · Overview
-        </p>
-
-        <p className="text-base text-foreground/80 leading-[1.7] max-w-5xl">
+        <p className="rise rise-4 mt-4 text-sm text-muted max-w-xl leading-[1.7]">
           {pricingNote}
-        </p>
-
-        <p className="mt-4 text-sm text-muted leading-[1.7] max-w-5xl">
-          아래에서 패키지를 선택하시면 상세 구성과 비교 내용을 확인하실 수 있습니다.
         </p>
       </section>
 
@@ -76,40 +66,10 @@ export default function PricePage() {
       {/* 안내 / FAQ */}
       <section className="py-14 sm:py-20 border-b border-border">
         <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted mb-8">
-          안내 사항
+          FAQ · 자주 묻는 질문
         </p>
 
-        <dl className="divide-y divide-border max-w-5xl">
-          <div className="py-5">
-            <dt className="text-sm font-medium tracking-tight mb-1.5">
-              견적은 상담 후 확정됩니다
-            </dt>
-            <dd className="text-sm text-foreground/75 leading-[1.7]">
-              위 패키지는 기준 가이드이며, 실제 작업 범위와 요구사항에 따라
-              최종 견적이 달라질 수 있습니다. 레퍼런스나 기획안을 가볍게 공유해
-              주시면 빠르게 안내해 드립니다.
-            </dd>
-          </div>
-          <div className="py-5">
-            <dt className="text-sm font-medium tracking-tight mb-1.5">
-              유지보수 플랜은 꼭 이용해야 하나요?
-            </dt>
-            <dd className="text-sm text-foreground/75 leading-[1.7]">
-              선택 사항입니다. 다만 홈페이지를 계속 켜 두려면 서버 비용과 관리가
-              필요해, 직접 챙기기 부담스러우시면 맡겨 두시는 편이 간편합니다.
-              직접 운영하시겠다면 소스 코드를 그대로 넘겨 드립니다.
-            </dd>
-          </div>
-          <div className="py-5">
-            <dt className="text-sm font-medium tracking-tight mb-1.5">
-              기획안이 없어도 괜찮습니다
-            </dt>
-            <dd className="text-sm text-foreground/75 leading-[1.7]">
-              아이디어 단계여도 괜찮습니다. 편하게 말씀해 주시면 방향성을
-              함께 잡아 나가며 진행합니다.
-            </dd>
-          </div>
-        </dl>
+        <FaqList />
       </section>
 
       {/* 마무리 CTA */}

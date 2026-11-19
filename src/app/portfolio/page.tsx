@@ -1,8 +1,14 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { categories, PREVIEW_COUNT, type Project } from "@/data/categories";
+import {
+  visibleCategories as categories,
+  PREVIEW_COUNT,
+  type Project,
+} from "@/data/categories";
 import { ProjectCarousel } from "@/components/ProjectCarousel";
 import { CategoryNav } from "@/components/CategoryNav";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbJsonLd, portfolioJsonLd } from "@/data/structured-data";
 
 const PORTFOLIO_DESC =
   "Web Outsourcing One이 제작한 제품 소개 · 회사 소개 · 공모전 웹 프로젝트 모음";
@@ -21,9 +27,13 @@ export const metadata: Metadata = {
 export default function PortfolioPage() {
   return (
     <div className="mx-auto max-w-6xl px-6 sm:px-10">
-      <CategoryNav
-        items={categories.map((c) => ({ slug: c.slug, name: c.name }))}
-      />
+      <JsonLd data={breadcrumbJsonLd([{ name: "포트폴리오", path: "/portfolio" }])} />
+      <JsonLd data={portfolioJsonLd(categories)} />
+      {categories.length > 1 && (
+        <CategoryNav
+          items={categories.map((c) => ({ slug: c.slug, name: c.name }))}
+        />
+      )}
 
       <section className="relative pt-16 pb-14 sm:pt-24 sm:pb-20 border-b border-border">
         <Link
@@ -59,7 +69,7 @@ export default function PortfolioPage() {
           <span aria-hidden className="text-muted/50">
             ·
           </span>
-          <span>2 - 7 days</span>
+          <span>From 7 days</span>
         </div>
       </section>
 
@@ -142,7 +152,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             href={project.link}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted opacity-0 group-hover:opacity-100 transition-opacity hover:text-accent"
+            className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted [@media(hover:hover)]:opacity-0 [@media(hover:hover)]:group-hover:opacity-100 focus-visible:opacity-100 transition-opacity hover:text-accent"
           >
             Visit ↗
           </a>

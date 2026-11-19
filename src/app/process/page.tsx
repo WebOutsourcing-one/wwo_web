@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { KAKAO_OPEN_CHAT, productionProcess } from "@/data/service";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbJsonLd } from "@/data/structured-data";
 
 const PROCESS_DESC =
   "상담부터 오픈·유지보수까지 4단계. 복잡한 준비 없이 뼈대 자료만 주시면 제작부터 호스팅·도메인 연결, 이후 운영 관리까지 이어서 맡아 드립니다.";
@@ -19,6 +21,7 @@ export const metadata: Metadata = {
 export default function ProcessPage() {
   return (
     <div className="mx-auto max-w-6xl px-6 sm:px-10">
+      <JsonLd data={breadcrumbJsonLd([{ name: "제작 과정", path: "/process" }])} />
       {/* 헤더 */}
       <section className="relative pt-10 pb-14 sm:pt-14 sm:pb-20 border-b border-border">
         <Link

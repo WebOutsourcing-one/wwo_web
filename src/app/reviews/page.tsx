@@ -9,6 +9,8 @@ export const metadata: Metadata = {
   title: "고객 후기",
   description: REVIEWS_DESC,
   alternates: { canonical: "/reviews" },
+  // 후기가 쌓이기 전까지는 빈 페이지가 검색 결과에 노출되지 않도록 합니다.
+  robots: { index: false, follow: true },
   openGraph: {
     title: "고객 후기 - WOO",
     description: REVIEWS_DESC,

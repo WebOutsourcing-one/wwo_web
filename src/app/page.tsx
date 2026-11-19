@@ -2,6 +2,9 @@ import Link from "next/link";
 import { CategoryNav } from "@/components/CategoryNav";
 import { TechStack } from "@/components/TechStack";
 import { PricingTable } from "@/components/PricingTable";
+import { FaqList } from "@/components/FaqList";
+import { JsonLd } from "@/components/JsonLd";
+import { faqJsonLd } from "@/data/structured-data";
 import {
   SERVICE_TAGLINE,
   KAKAO_OPEN_CHAT,
@@ -14,6 +17,7 @@ import {
 export default function HomePage() {
   return (
     <div className="mx-auto max-w-6xl px-6 sm:px-10">
+      <JsonLd data={faqJsonLd} />
       <CategoryNav
         items={[
           { slug: "service", name: "서비스 소개" },
@@ -22,6 +26,7 @@ export default function HomePage() {
           { slug: "portfolio", name: "포트폴리오" },
           { slug: "included", name: "포함 사항" },
           { slug: "tech", name: "기술 스택" },
+          { slug: "faq", name: "자주 묻는 질문" },
           { slug: "contact", name: "문의" },
         ]}
       />
@@ -69,9 +74,7 @@ export default function HomePage() {
           Service · 서비스 소개
         </p>
         <h2 className="text-3xl sm:text-5xl font-medium tracking-[-0.02em] leading-[1.05] mb-8 max-w-[18ch]">
-          단순히 텍스트만 바꾸는
-          <br />
-          홈페이지가 아닙니다.
+          {serviceOverview.lead}
         </h2>
         <div className="space-y-4 max-w-5xl">
           {serviceOverview.paragraphs.map((para, i) => (
@@ -133,7 +136,7 @@ export default function HomePage() {
           패키지를 선택하시면 상세 구성과 비교 내용을 확인하실 수 있습니다.
         </p>
 
-        <PricingTable />
+        <PricingTable showComparison={false} />
       </section>
 
       {/* ── 5. 포트폴리오 티저 ──────────────────────────────── */}
@@ -204,7 +207,21 @@ export default function HomePage() {
         <TechStack />
       </section>
 
-      {/* ── 10. 마무리 CTA ──────────────────────────────────── */}
+      {/* ── 8. 자주 묻는 질문 (AEO) ─────────────────────────── */}
+      <section
+        id="faq"
+        className="py-14 sm:py-20 border-b border-border scroll-mt-20"
+      >
+        <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted mb-6">
+          FAQ · 자주 묻는 질문
+        </p>
+        <h2 className="text-3xl sm:text-5xl font-medium tracking-[-0.02em] leading-[1.05] mb-10">
+          궁금하신 점을 먼저 정리했습니다.
+        </h2>
+        <FaqList defaultOpen={1} />
+      </section>
+
+      {/* ── 9. 마무리 CTA ───────────────────────────────────── */}
       <section id="contact" className="py-14 sm:py-20 scroll-mt-20">
         <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted mb-6">
           Contact · 문의
@@ -215,7 +232,9 @@ export default function HomePage() {
           함께 만들어 드립니다.
         </h2>
         <p className="mb-10 max-w-lg text-base text-foreground/75 leading-[1.7]">
-          {serviceOverview.paragraphs[1]}
+          참고하고 싶은 사이트 링크 하나, 혹은 &ldquo;이런 느낌이면
+          좋겠다&rdquo;는 한마디면 충분합니다. 상담과 견적은 무료이며, 비용이
+          확정되기 전에는 작업을 시작하지 않습니다.
         </p>
         <a
           href={KAKAO_OPEN_CHAT}

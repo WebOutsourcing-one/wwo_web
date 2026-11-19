@@ -42,7 +42,8 @@ export function CategoryNav({ items }: { items: Item[] }) {
   return (
     <nav
       aria-label="카테고리 내비게이션"
-      className="hidden md:block fixed right-3 lg:right-4 top-1/2 -translate-y-1/2 z-50"
+      // 본문 폭(max-w-6xl = 1152px) 바깥 여백이 패널 폭보다 넓을 때만 노출 - 그보다 좁으면 본문을 가립니다.
+      className="hidden min-[1500px]:block fixed right-4 top-1/2 -translate-y-1/2 z-20"
     >
       <div className="pointer-events-auto rounded-xl border border-border bg-background/55 backdrop-blur-xl backdrop-saturate-150 shadow-[0_8px_30px_-12px_rgba(50,30,10,0.18)] px-5 py-5">
         <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted mb-4">

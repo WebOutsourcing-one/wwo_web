@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Hahmlet, JetBrains_Mono } from "next/font/google";
-import { SITE_URL } from "@/data/service";
+import { SITE_URL, KAKAO_OPEN_CHAT } from "@/data/service";
 import { siteJsonLd } from "@/data/structured-data";
 import { JsonLd } from "@/components/JsonLd";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -95,12 +95,12 @@ export default function RootLayout({
           <div className="mx-auto max-w-6xl px-6 sm:px-10 py-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs">
             <div className="flex flex-col gap-1">
               <span className="font-mono uppercase tracking-[0.18em] text-muted">
-                © 2026 - Web Outsourcing One
+                © {new Date().getFullYear()} - Web Outsourcing One
               </span>
               <span className="text-muted/80">Built carefully in Seoul.</span>
             </div>
             <a
-              href="https://open.kakao.com/o/s46m1jvi"
+              href={KAKAO_OPEN_CHAT}
               target="_blank"
               rel="noopener noreferrer"
               className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted hover:text-foreground transition-colors"

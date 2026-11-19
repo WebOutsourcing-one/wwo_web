@@ -37,6 +37,15 @@ export const categories: Category[] = [
     name: "회사 소개",
     description: "기업 브랜드와 가치를 전달하는 사이트",
     projects: [
+      {
+        name: "설유화",
+        link: "https://sullyuwha.co.kr/",
+        description: "한복 예복 브랜드 · Next.js",
+        images: [
+          "/images/company/sullyuwha/01.png",
+          "/images/company/sullyuwha/02.png",
+        ],
+      },
       /*
       {
         name: "Studio Mono",
@@ -70,6 +79,13 @@ export const categories: Category[] = [
   },
 ];
 
+/**
+ * 작업물이 1개 이상 있는 카테고리만. 빈 카테고리는 목록·사이트맵·상세 페이지에서
+ * 숨겨 "Coming soon"만 있는 미완성 화면이 노출되지 않게 합니다.
+ * 프로젝트를 추가하면 자동으로 다시 나타납니다.
+ */
+export const visibleCategories = categories.filter((c) => c.projects.length > 0);
+
 export function getCategory(slug: string): Category | undefined {
-  return categories.find((c) => c.slug === slug);
+  return visibleCategories.find((c) => c.slug === slug);
 }
